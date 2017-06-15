@@ -2,33 +2,120 @@ package net.vikesh.fk.repository;
 
 import net.vikesh.fk.config.ApplicationConfig;
 import net.vikesh.fk.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by vikes on 11-06-2017.
+ * @author Vikesh
  */
 @ContextConfiguration(classes = {ApplicationConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserRepositoryTest {
 
+    static final Logger LOGGER = LogManager.getLogger(UserRepositoryTest.class.getName());
+
     @Resource
     UserRepository userRepository;
 
+    @Before
+    public void beforeEachTest() {
+        userRepository.deleteAll();
+    }
+
     @Test
     public void shouldSaveUser() {
+        User user = createDummyUser();
+        User save = userRepository.save(user);
+        System.out.println(save.getUuid());
+        Assert.assertNotNull(save.getEmail());
+        Assert.assertNotNull(save.getSalt());
+        Assert.assertNotNull(save.getUserName());
+        Assert.assertNotNull(save.getFirstName());
+        Assert.assertNotNull(save.getLastName());
+        Assert.assertNotNull(user.getCreatedAt());
+        Assert.assertNotNull(user.getPassword());
+        Assert.assertNotNull(user.getMiddleName());
+        Assert.assertNotNull(save.getUuid());
+    }
+
+    @Test
+    public void shouldDeleteUser() {
+        User user = createDummyUser();
+        User save = userRepository.save(user);
+        System.out.println(save.getUuid());
+        Assert.assertNotNull(save.getUuid());
+        userRepository.delete(user);
+        long count = userRepository.count();
+        Assert.assertEquals(0L, count);
+    }
+
+    @Test
+    public void shouldDeleteAllUser() {
+        int userSize = 20;
+        List<User> dummyUsers = createDummyUsers(userSize);
+        dummyUsers.forEach(user -> userRepository.save(user));
+        Assert.assertEquals((long) userRepository.count(), userSize);
+        userRepository.deleteAll();
+        Assert.assertEquals((long) userRepository.count(), 0L);
+    }
+
+    @Test
+    public void shouldUpdateOneUser() {
+        User user = createDummyUser();
+        userRepository.save(user);
+        String uuid = user.getUuid();
+        User beforeUpdate = userRepository.findOne(uuid);
+        beforeUpdate.setEmail("testemail@email.com");
+        userRepository.save(beforeUpdate);
+        User afterSave = userRepository.findOne(uuid);
+        Assert.assertNotNull(afterSave.getModifiedAt());
+        Assert.assertNotNull(afterSave.getCreatedAt());
+        Assert.assertEquals("testemail@email.com", afterSave.getEmail());
+    }
+
+    private User createDummyUser() {
         User user = new User();
         user.setEmail("vikesh.kumar2@gmail.com")
                 .setLastName("Kumar")
+                .setMiddleName("None")
                 .setFirstName("Vikesh")
-                .setPassword("somepassword");
+                .setPassword("somepassword")
+                .setUserName("vikeshkumar");
+        return user;
+    }
 
-        User save = userRepository.save(user);
-        Assert.assertNotNull(save.getUuid());
+    @Test
+    public void shouldFindUserByParameters() {
+        User user = createDummyUser();
+        user.setEmail("test.email@email.com");
+        userRepository.save(user);
+        User vikeshkumar = userRepository.findByUserName("vikeshkumar");
+        User testEmail = userRepository.findByEmail("test.email@email.com");
+        Assert.assertNotNull(vikeshkumar);
+        Assert.assertNotNull(testEmail);
+    }
+
+    private List<User> createDummyUsers(int size) {
+        List<User> users = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            User user = new User();
+            user.setEmail("testemail" + i + "@gmail.com")
+                    .setLastName("User " + i)
+                    .setFirstName("Vikesh")
+                    .setPassword("somepassword" + i)
+                    .setUserName("vikeshkumar" + i);
+            users.add(user);
+        }
+        return users;
     }
 }

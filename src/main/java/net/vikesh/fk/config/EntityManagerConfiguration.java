@@ -3,7 +3,6 @@ package net.vikesh.fk.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -28,14 +27,12 @@ public class EntityManagerConfiguration {
     @Resource(name = "jpaProperties")
     private Properties jpaProperties;
 
-    @Bean
+    @Bean(name = "transactionManager")
     public PlatformTransactionManager platformTransactionManager(EntityManagerFactory emf) {
-        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager(emf);
-        return jpaTransactionManager;
+        return new JpaTransactionManager(emf);
     }
 
     @Bean
-    @Resource
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
@@ -48,7 +45,6 @@ public class EntityManagerConfiguration {
 
 
     @Bean
-    @Primary
     public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
         return entityManagerFactory.createEntityManager();
     }

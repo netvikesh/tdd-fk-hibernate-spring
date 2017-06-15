@@ -15,7 +15,7 @@ import java.util.Properties;
  * Created by vikes on 11-06-2017.
  */
 @Configuration
-@Profile(value = "production")
+@Profile(value = {"production", "integration"})
 @PropertySource("classpath:/production.properties")
 public class MySQLDatabaseConfiguration {
 
@@ -24,7 +24,7 @@ public class MySQLDatabaseConfiguration {
 
     @Bean
     public DataSource dataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
+        BasicDataSource dataSource = new BasicDataSource(); //NOSONAR
         dataSource.setUsername(env.getProperty("db.username"));
         dataSource.setPassword(env.getProperty("db.password"));
         dataSource.setUrl(env.getProperty("db.url"));

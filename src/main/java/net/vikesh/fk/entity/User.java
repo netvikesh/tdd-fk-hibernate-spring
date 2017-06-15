@@ -1,11 +1,11 @@
 package net.vikesh.fk.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.UUID;
 
 /**
- * Created by vikes on 11-06-2017.
+ * @author Vikesh
+ * {@link User} for representing all the users in the System.
  */
 @Entity
 @Table(name = "USERS")
@@ -91,8 +91,10 @@ public class User extends GenericItem {
         return salt;
     }
 
-    public User setSalt(String salt) {
-        this.salt = salt;
-        return this;
+    @PrePersist
+    private void setSalt() {
+        this.salt = UUID.randomUUID().toString();
     }
+
+
 }

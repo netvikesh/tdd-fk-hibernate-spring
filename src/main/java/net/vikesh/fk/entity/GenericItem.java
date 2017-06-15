@@ -1,13 +1,12 @@
 package net.vikesh.fk.entity;
 
-import com.google.common.base.Strings;
-
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.UUID;
 
 /**
- * Created by vikes on 11-06-2017.
+ * @author Vikesh
+ *         {@link GenericItem} is the superclass for all the Entity, that must have their own Table
  */
 @MappedSuperclass
 public abstract class GenericItem {
@@ -21,27 +20,25 @@ public abstract class GenericItem {
     private Instant modifiedAt;
 
     @PrePersist
-    protected void onCreate() {
-        if (Strings.isNullOrEmpty(uuid)) {
-            this.uuid = UUID.randomUUID().toString();
-        }
+    private final void onCreate() {
+        this.uuid = UUID.randomUUID().toString();
         this.createdAt = Instant.now();
     }
 
-    public String getUuid(){
+    public final String getUuid() {
         return this.uuid;
     }
 
     @PreUpdate
-    protected void onUpdate() {
+    private void onUpdate() {
         this.modifiedAt = Instant.now();
     }
 
-    public Instant getCreatedAt() {
+    public final Instant getCreatedAt() {
         return this.createdAt;
     }
 
-    public Instant getModifiedAt() {
+    public final Instant getModifiedAt() {
         return this.modifiedAt;
     }
 }
