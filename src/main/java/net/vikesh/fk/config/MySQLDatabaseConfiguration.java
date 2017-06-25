@@ -15,7 +15,7 @@ import java.util.Properties;
  * Created by vikes on 11-06-2017.
  */
 @Configuration
-@Profile(value = {"production", "integration"})
+@Profile(value = {"production", "integration","develop"})
 @PropertySource("classpath:/production.properties")
 public class MySQLDatabaseConfiguration {
 

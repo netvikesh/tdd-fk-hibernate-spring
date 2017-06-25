@@ -15,8 +15,8 @@ import java.util.Properties;
  * Created by vikes on 11-06-2017.
  */
 @Configuration
-@Profile(value = "develop")
-@PropertySource(value = "classpath:/develop.properties")
+@Profile(value = "test")
+@PropertySource(value = "classpath:/test.properties")
 public class EmbeddedDatabaseConfiguration {
 
     @Resource

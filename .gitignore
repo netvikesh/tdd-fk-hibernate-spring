@@ -2,3 +2,7 @@ build/
 .idea/
 .gradle/
 *.class
+node_modules/
+.settings/
+.vscode
+bin/

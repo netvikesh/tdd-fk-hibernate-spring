@@ -62,7 +62,7 @@ dependencies {
 
 test {
     systemProperties = [
-            'spring.profiles.active': 'develop'
+            'spring.profiles.active': 'test'
     ]
 
     jacoco {
