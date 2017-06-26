@@ -2,11 +2,11 @@ dist: trusty
 language: java
 addons:
   sonarcloud:
-    organization: "netvikesh-github"
+    organization: "netvikesh"
     token:
       secure: "pOtFqdb6EtqItlkzHqndXh7TtlZGDSFaDXczoOU17CnbX02jQ47D4K6zci8r5fEqncbOEqa9nd7aSY+ob6QFl0ys3VhByROUmuJ5J+VxxznkkeDsbfYyh+/2zHPCWq+nvxRJ+LxUisdxo3n6aTfnZJ72JiOfSEE/wQa60DAQOW0fT6jn1HdeuJ8nUnTHE78uRw/skfCsV032Ex0l6uKPF0UDvbRinOU0EezJPuBOYf58C/AsxrnjpN9ztjL4CLQMp0k9NRXEgd0MfcpiG0rSX4tX2bJuU8NXz/8FleWQYWV8kbymA95dZmIMVtQKOHgSxuYWbY+HRtNxA0OcA8ZNQWxoUaF9/A2C5JqE/JCREFLd2Ej2OPavKaVTHEG36/+nS3iHK9QF9CEl0KaiyTBfmeoUC0LdEPQkbJ9b2eIQo8DdkVLzaGyIVC/AMy5AJMyPJ09gShTnBeHY9k8F4wDHDMNJGaEfmJd2VG29R+P+e3ZMxnjNBbjG3kGgWIapwuLlxZdgySHiE6V+JwjqQJ6A2lf8a7uwNDvdCptFOvrT2L96xyi06fcvB4Efkn30xG6/fwiIAUa8t40A6V+vnHaBeABEkU1IMeYD3KSLKx+xhYqXKYbYPWDNG/sgfyFDFjN3etEty18EHUww08WbzD6kkP9Ih7W7asTuVyg0gmFvl4Y="
 jdk:
   - oraclejdk8
 script:
   - gradle test jacocoTestReport
-  - sonar-scanner
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN
