@@ -80,6 +80,7 @@ jacocoTestReport {
     reports {
         xml.enabled true
         csv.enabled false
+        xml.destination "${buildDir}/reports/coverage.xml"
         html.destination "${buildDir}/reports/coverage"
     }
 }

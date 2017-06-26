@@ -8,4 +8,5 @@ addons:
 jdk:
   - oraclejdk8
 script:
-  - gradle test jacocoTestReport sonar-scanner -Dsonar.login=$LEARN_IT_ALL
+  - gradle test jacocoTestReport
+  - sonar-scanner -Dsonar.login=$LEARN_IT_ALL
