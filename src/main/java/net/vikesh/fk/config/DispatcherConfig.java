@@ -24,7 +24,7 @@ import java.util.List;
 @ComponentScan(value = {"net.vikesh.fk.web"})
 public class DispatcherConfig extends WebMvcConfigurerAdapter {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(DispatcherConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherConfig.class);
 
     @Resource
     private Environment environment;
@@ -35,9 +35,7 @@ public class DispatcherConfig extends WebMvcConfigurerAdapter {
         String[] activeProfiles = environment.getActiveProfiles();
         List<String> activeProfilesList = Arrays.asList(activeProfiles);
         if (LOGGER.isDebugEnabled()) {
-            activeProfilesList.forEach(profile -> {
-                LOGGER.debug("Active Profiles " + profile);
-            });
+            activeProfilesList.forEach(profile -> LOGGER.debug("Active Profiles " + profile));
         }
         if (activeProfilesList.contains("develop")) {
             registry.addResourceHandler("/app/**").addResourceLocations("/WEB-INF/app-dev/");
