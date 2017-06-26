@@ -1,10 +1,5 @@
 dist: trusty
 language: java
-addons:
-  sonarcloud:
-    organization: "tdd-learn-it-all"
-    token:
-      secure: "RAWMrtTW/mAkA0rPfplVYGG//C8zaeUUPjrydFCTf0m4JFdxZExOJ8qZez9bIC5gs/PXtNfFRbiCL4BWvQtt+cK8QqZ4ghiCdOEg5tXSQJoWJ65lnid21p4wZTzNSYuG1IhicFfGIzLM9g0RmC/qJVWksKRG7QGoEUOWo0bnowwz4mOafDe1jM3iPS87G0UjzqZeqsk2BDRpJBXwoDZkGFhBlhE3rXszeDTO/uAlUewSy+2v1B9YXWeAqybAkzYKsg2m8B5dd+wVCdWFwuvO7Bo+uyTtWTagHcSdiKYvr3LM95GPUzVuY9cR9bPpBr+kNfSVT6uLBv4oTimRY6uMDM2+35zFgD1cGCHl8Nt0iFOYmstSXrCfYOrXsaMAdq05pZEgH0bc9GxVerZvp9DYytN8dS3x9M2h7ZpFjeAf0FWjLdvnrAcc9w+LxNCh/d3wGDX11I5IHqofo6JtLS7ukB54ieBXt+43Gi2l8huBtmUaUc6lo1cBMAGBApKzd7Kd7ZH6Pi72DEJCzPC3c7ve9/+roBCZxG/Butnej71CoBL/hWirhyjp4Fd3zD7H+azSTP168gpIgWSVJEJdHAxhmpkXrFzQ0nb3sRh1NoVScK/NtMzctX5KNsxoxnC0EZ3BW/51SyBRlQOSYu+TcvKzcSQ0tMBsizk+mv9UAaR0EUU="
 jdk:
   - oraclejdk8
 script:

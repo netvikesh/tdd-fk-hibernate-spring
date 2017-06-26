@@ -92,5 +92,10 @@ sonarqube {
         property "sonar.tests", "src/test/java"
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.projectName", "TDD My-Flipkart"
+        property "sonar.organization", "tdd-learn-it-all"
+        property "sonar.links.homepage","https://github.com/netvikesh/tdd-fk-hibernate-spring"
+        property "sonar.links.ci","https://travis-ci.org/netvikesh/tdd-fk-hibernate-spring"
+        property "sonar.links.scm","https://github.com/netvikesh/tdd-fk-hibernate-spring"
+        property "sonar.links.issue","https://github.com/netvikesh/tdd-fk-hibernate-spring/issues"
     }
 }
