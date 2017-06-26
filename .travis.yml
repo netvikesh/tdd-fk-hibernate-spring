@@ -1,0 +1,7 @@
+language: java
+jdk:
+  - oraclejdk8
+script:
+  - gradle test jacocoTestReport
+deploy:
+  - skip_clean: true
