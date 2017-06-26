@@ -92,6 +92,5 @@ sonarqube {
         property "sonar.tests", "src/test/java"
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.projectName", "TDD My-Flipkart"
-        property "sonar.login", "e331d3dd8737805ef0871d2cadd74f252ff568ea"
     }
 }
