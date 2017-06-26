@@ -3,5 +3,8 @@ jdk:
   - oraclejdk8
 script:
   - gradle test jacocoTestReport
+  - gradle codeCoverageReport
 deploy:
   - skip_clean: true
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
