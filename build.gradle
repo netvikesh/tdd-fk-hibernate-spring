@@ -90,8 +90,8 @@ sonarqube {
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.sources", "src/main/java"
         property "sonar.tests", "src/test/java"
-        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.projectName", "TDD My-Flipkart"
-        property "sonar.login", "a6693aaa40c1ad0f84eb7b57689150f3309ed24b"
+        property "sonar.login", "e331d3dd8737805ef0871d2cadd74f252ff568ea"
     }
 }
