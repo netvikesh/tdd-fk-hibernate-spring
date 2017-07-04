@@ -96,5 +96,21 @@ public class User extends GenericItem {
         this.salt = UUID.randomUUID().toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
+        User user = (User) o;
+
+        return email.equals(user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + email.hashCode();
+        return result;
+    }
 }

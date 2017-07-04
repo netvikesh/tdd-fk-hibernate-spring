@@ -58,4 +58,14 @@ public class NavNode extends GenericItem {
     public void remove(NavNode navNode) {
         getNavNodes().remove(navNode);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
