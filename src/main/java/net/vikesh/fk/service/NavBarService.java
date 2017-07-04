@@ -1,5 +1,6 @@
 package net.vikesh.fk.service;
 
+import com.google.common.collect.Lists;
 import net.vikesh.fk.entity.component.NavBar;
 import net.vikesh.fk.entity.component.NavNode;
 import net.vikesh.fk.repository.NavBarRepository;
@@ -37,4 +38,11 @@ public class NavBarService {
         }
     }
 
+    public List<NavBar> getNavBar() {
+        return Lists.newArrayList(navBarRepository.findAll());
+    }
+
+    public void removeAll() {
+        navBarRepository.deleteAll();
+    }
 }
