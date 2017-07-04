@@ -23,4 +23,16 @@ public class NavBar extends GenericItem {
     public void setNavNodes(List<NavNode> navNodes) {
         this.navNodes = navNodes;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
