@@ -41,4 +41,19 @@ public abstract class GenericItem {
     public final Instant getModifiedAt() {
         return this.modifiedAt;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GenericItem that = (GenericItem) o;
+
+        return uuid.equals(that.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return uuid.hashCode();
+    }
 }
