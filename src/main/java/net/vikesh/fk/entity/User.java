@@ -1,11 +1,14 @@
 package net.vikesh.fk.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
 import java.util.UUID;
 
 /**
  * @author Vikesh
- * {@link User} for representing all the users in the System.
+ *         {@link User} for representing all the users in the System.
  */
 @Entity
 @Table(name = "USERS")
@@ -104,7 +107,7 @@ public class User extends GenericItem {
 
         User user = (User) o;
 
-        return email.equals(user.email);
+        return email.equalsIgnoreCase(user.email) && userName.equalsIgnoreCase(user.userName);
     }
 
     @Override

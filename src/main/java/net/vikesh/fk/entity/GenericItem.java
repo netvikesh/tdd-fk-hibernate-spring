@@ -50,15 +50,18 @@ public abstract class GenericItem {
         if (o == null || getClass() != o.getClass()) return false;
 
         GenericItem that = (GenericItem) o;
-        if(Strings.isNotBlank(uuid) && Strings.isNotBlank(that.uuid))
-        {
+        if (Strings.isNotBlank(uuid) && Strings.isNotBlank(that.uuid)) {
             return uuid.equals(that.uuid);
         }
-        return Strings.isBlank(uuid) && Strings.isBlank(uuid);
+        return Strings.isBlank(uuid) && Strings.isBlank(that.getUuid());
     }
 
     @Override
     public int hashCode() {
-        return uuid.hashCode();
+        if (Strings.isNotBlank(uuid)) {
+            return uuid.hashCode();
+        } else {
+            return 0;
+        }
     }
 }

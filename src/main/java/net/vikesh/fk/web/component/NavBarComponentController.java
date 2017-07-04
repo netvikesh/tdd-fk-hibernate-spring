@@ -1,5 +1,6 @@
 package net.vikesh.fk.web.component;
 
+import com.google.common.collect.Lists;
 import net.vikesh.fk.entity.component.NavBar;
 import net.vikesh.fk.repository.NavBarRepository;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by vikes on 04-07-2017.
@@ -23,11 +23,9 @@ public class NavBarComponentController {
     @Resource
     private NavBarRepository navBarRepository;
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, path = "navbar", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getNavBar() {
-        Iterable<NavBar> allNavBars = navBarRepository.findAll();
-        List<NavBar> navBars = new ArrayList<>(1);
-        allNavBars.forEach(navBar -> navBars.add(navBar));
+        ArrayList<NavBar> navBars = Lists.newArrayList(navBarRepository.findAll());
         return new ResponseEntity<>(navBars, HttpStatus.OK);
     }
 }

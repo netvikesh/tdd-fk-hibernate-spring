@@ -61,11 +61,21 @@ public class NavNode extends GenericItem {
 
     @Override
     public boolean equals(Object o) {
-        return super.equals(o);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        NavNode navNode = (NavNode) o;
+
+        if (!href.equals(navNode.href)) return false;
+        return text.equals(navNode.text);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + href.hashCode();
+        result = 31 * result + text.hashCode();
+        return result;
     }
 }

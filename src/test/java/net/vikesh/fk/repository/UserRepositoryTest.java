@@ -62,7 +62,18 @@ public class UserRepositoryTest {
         user1.setUserName("user1");
         User user2 = createDummyUser();
         user2.setUserName("user2");
-        Assert.assertTrue(user1.equals(user2));
+        Assert.assertFalse(user1.equals(user2));
+        userRepository.save(user1);
+        userRepository.save(user2);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void shouldNotSaveUsersWithSameUserName() {
+        User user1 = createDummyUser();
+        user1.setEmail("user1@gmail.com");
+        User user2 = createDummyUser();
+        user2.setEmail("user2@gmail.com");
+        Assert.assertFalse(user1.equals(user2));
         userRepository.save(user1);
         userRepository.save(user2);
     }
@@ -122,6 +133,14 @@ public class UserRepositoryTest {
         User testEmail = userRepository.findByEmail("test.email@email.com");
         Assert.assertNotNull(vikeshkumar);
         Assert.assertNotNull(testEmail);
+    }
+
+    @Test
+    public void userEqualityTest(){
+        User user = createDummyUser();
+        User user2 = createDummyUser();
+        userRepository.save(user);
+        Assert.assertFalse(user.equals(user2));
     }
 
     private List<User> createDummyUsers(int size) {
