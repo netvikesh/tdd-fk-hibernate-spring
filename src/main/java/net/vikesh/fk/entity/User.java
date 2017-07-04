@@ -11,7 +11,7 @@ import java.util.UUID;
 @Table(name = "USERS")
 public class User extends GenericItem {
 
-    @Column(name = "USERNAME", nullable = false)
+    @Column(name = "USERNAME", nullable = false, unique = true)
     private String userName;
 
     @Column(name = "FIRST_NAME")
@@ -23,7 +23,7 @@ public class User extends GenericItem {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "EMAIL", nullable = false)
+    @Column(name = "EMAIL", nullable = false, unique = true)
     private String email;
 
     @Column(name = "PASSWORD")

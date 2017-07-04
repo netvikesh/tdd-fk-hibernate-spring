@@ -27,9 +27,7 @@ public class NavBarComponentController {
     public ResponseEntity<Object> getNavBar() {
         Iterable<NavBar> allNavBars = navBarRepository.findAll();
         List<NavBar> navBars = new ArrayList<>(1);
-        allNavBars.forEach(navBar -> {
-            navBars.add(navBar);
-        });
+        allNavBars.forEach(navBar -> navBars.add(navBar));
         return new ResponseEntity<>(navBars, HttpStatus.OK);
     }
 }

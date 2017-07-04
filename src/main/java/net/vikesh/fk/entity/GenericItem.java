@@ -1,5 +1,7 @@
 package net.vikesh.fk.entity;
 
+import org.apache.logging.log4j.util.Strings;
+
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.UUID;
@@ -48,8 +50,11 @@ public abstract class GenericItem {
         if (o == null || getClass() != o.getClass()) return false;
 
         GenericItem that = (GenericItem) o;
-
-        return uuid.equals(that.uuid);
+        if(Strings.isNotBlank(uuid) && Strings.isNotBlank(that.uuid))
+        {
+            return uuid.equals(that.uuid);
+        }
+        return Strings.isBlank(uuid) && Strings.isBlank(uuid);
     }
 
     @Override

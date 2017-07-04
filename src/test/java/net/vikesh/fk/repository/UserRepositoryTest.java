@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -46,6 +47,24 @@ public class UserRepositoryTest {
         Assert.assertNotNull(user.getPassword());
         Assert.assertNotNull(user.getMiddleName());
         Assert.assertNotNull(save.getUuid());
+    }
+
+    @Test
+    public void sameEmailShouldMeanSameUser() {
+        User user1 = createDummyUser();
+        User user2 = createDummyUser();
+        Assert.assertTrue(user1.equals(user2));
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void shouldNotSaveUsersWithSameEmail() {
+        User user1 = createDummyUser();
+        user1.setUserName("user1");
+        User user2 = createDummyUser();
+        user2.setUserName("user2");
+        Assert.assertTrue(user1.equals(user2));
+        userRepository.save(user1);
+        userRepository.save(user2);
     }
 
     @Test
