@@ -24,16 +24,14 @@ public class NavBarService {
 
     public NavBar saveNavBar(NavBar navBar) {
         List<NavNode> navNodes = navBar.getNavNodes();
-        navNodes.forEach(node -> saveNavNode(node));
+        navNodes.forEach(this::saveNavNode);
         navNodeRepository.save(navNodes);
         return navBarRepository.save(navBar);
     }
 
     private void saveNavNode(NavNode navNode) {
         if (!CollectionUtils.isEmpty(navNode.getNavNodes())) {
-            navNode.getNavNodes().forEach(node -> {
-                saveNavNode(node);
-            });
+            navNode.getNavNodes().forEach(this::saveNavNode);
         } else {
             navNodeRepository.save(navNode);
         }
