@@ -29,6 +29,12 @@ public class NavBarTest {
     }
 
     @Test
+    public void equalsTest_4(){
+        NavBar navBar = new NavBar();
+        Assert.assertFalse(navBar.equals(new Object()));
+    }
+
+    @Test
     public void hashCodeTest(){
         NavBar navBar = new NavBar();
         Assert.assertTrue(navBar.hashCode() == 0);
