@@ -4,6 +4,7 @@ import net.vikesh.fk.entity.GenericItem;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class NavNode extends GenericItem {
     @Column
     private String text = "";
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<NavNode> navNodes = new ArrayList<>();
 
     public String getHref() {

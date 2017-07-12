@@ -3,6 +3,7 @@ package net.vikesh.fk.entity.component;
 import net.vikesh.fk.entity.GenericItem;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @Entity
 public class NavBar extends GenericItem {
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<NavNode> navNodes = new ArrayList<>();
 
     public List<NavNode> getNavNodes() {
